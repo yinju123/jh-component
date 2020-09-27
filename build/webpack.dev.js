@@ -7,8 +7,6 @@ const devConfig = {
   
 }
 
-console.log(merge(base, devConfig))
-
 module.exports = merge(base, devConfig)
 
 

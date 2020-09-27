@@ -1,27 +1,47 @@
 {
-  "name": "jh-component",
+  "name": "healthy-ui",
   "version": "1.0.0",
-  "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config build/webpack.dev.js"
+    "dev": "webpack-dev-server --config build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css": "^3.0.0",
     "css-loader": "^4.3.0",
     "html-webpack-plugin": "^4.4.1",
     "merge": "^1.2.1",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.4"
   },
   "dependencies": {
     "vue": "^2.6.12"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinju123/jh-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yinju123/jh-component/issues"
+  },
+  "homepage": "https://github.com/yinju123/jh-component#readme",
+  "description": ""
 }

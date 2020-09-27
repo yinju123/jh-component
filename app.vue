@@ -1,24 +1,11 @@
-!<template>
-  <div class="wrapper">{{a}}</div>
+<template>
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
-  components: {},
-  props: {},
-  data() {
-    return {
-      a: 1,
-    };
-  },
-  watch: {},
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {},
+  name: "App",
 };
 </script>
-<style scoped>
-.wrapper {
-}
-</style>
