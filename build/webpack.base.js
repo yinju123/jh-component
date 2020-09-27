@@ -12,22 +12,21 @@ const VueLoadPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry:{
-    a:'./src/a.js'
+    index:'./src/index.js'
   },
   output:{
     path:resolve('../lib'),
     filename:'[name].js',
-    libraryTarget:'jsonp',
-    library:'myLibrary'
-    // libraryTarget: 'umd'
+    library:'health',
+    libraryTarget: 'umd'
   },
   plugins:[
     new VueLoadPlugin(),
     new CleanWebpackPlugin(),
-    new htmlWebpackPlugin({
-      title:'45',
-      template:'./index.html'
-    })
+    // new htmlWebpackPlugin({
+    //   title:'45',
+    //   template:'./index.html'
+    // })
   ],
   module:{
     rules:[

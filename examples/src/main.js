@@ -20,8 +20,10 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
-// import health from '../../lib/a'
-// console.log('module', myLibrary)
+// import health from '../../lib/health'
+import health from 'healthy-ui'
+console.log('health', health)
+Vue.use(health)
 
 /**
  * If you don't want to use mock-server
