@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {getName} from '../../../utils/utils'
 export default {
   name: "Avatar",
   components: {},
@@ -17,7 +18,9 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {},
+  created() {
+    getName()
+  },
   mounted() {},
 };
 </script>

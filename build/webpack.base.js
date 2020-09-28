@@ -1,6 +1,7 @@
 
 const path = require('path')
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function resolve(dir){
@@ -12,7 +13,8 @@ const VueLoadPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry:{
-    index:'./src/index.js'
+    index:'./src/index.js',
+    utils:'./utils/utils.js'
   },
   output:{
     path:resolve('../lib'),
@@ -22,11 +24,7 @@ module.exports = {
   },
   plugins:[
     new VueLoadPlugin(),
-    new CleanWebpackPlugin(),
-    // new htmlWebpackPlugin({
-    //   title:'45',
-    //   template:'./index.html'
-    // })
+    new CleanWebpackPlugin()
   ],
   module:{
     rules:[
@@ -66,7 +64,11 @@ module.exports = {
   },
   optimization:{
     minimize: false,
-  }
+    splitChunks: {
+      chunks: 'all'
+    },
+  },
+
 
 }
 

@@ -22,7 +22,6 @@ import * as filters from './filters' // global filters
 
 // import health from '../../lib/health'
 import health from 'healthy-ui'
-console.log('health', health)
 Vue.use(health)
 
 /**

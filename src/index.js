@@ -1,5 +1,6 @@
 import Avatar from '../packages/avatar/index'
 
+
 const components = [
   Avatar
 ]
