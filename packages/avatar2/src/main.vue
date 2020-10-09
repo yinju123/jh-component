@@ -1,15 +1,12 @@
 <template>
-  <div class="avator">
-    <img :src="src" />
-  </div>
+  <div class="avator"></div>
 </template>
 
 <script>
 import { getName } from "../../../utils/utils";
 import jquery from "jquery";
-console.log("jquery", jquery);
 export default {
-  name: "Avatar",
+  name: "Avatar2",
   components: {},
   props: {
     src: String,

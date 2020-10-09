@@ -1,10 +1,10 @@
 
-function getName(){
+export function getName() {
   console.log('seclusion')
 }
 
 
 
-export default {
-  getName
-}
+// export default {
+//   getName
+// }
