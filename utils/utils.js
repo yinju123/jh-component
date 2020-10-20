@@ -1,4 +1,5 @@
 
+const xdate = require('xdate')
 
 /* 
 防抖，
@@ -87,6 +88,7 @@ export function getRightMonth (date = new Date()) {
 日期格式
 */
 export function dateToString (date) {
+  !date && (date = new Date())
   var t = new xdate(date)
   return t.toString('yyyy-MM-dd')
 }
@@ -108,7 +110,7 @@ export function clone(obj) {
   // Handle Array
   if (obj instanceof Array) {
       var copy = [];
-      for (var i = 0, var len = obj.length; i < len; ++i) {
+      for (var i = 0, len = obj.length; i < len; ++i) {
           copy[i] = clone(obj[i]);
       }
       return copy;

@@ -1,27 +1,29 @@
 <template>
   <div class="wrapper">
-    <div class="b">avatar</div>
+    <div class="b">avatar2</div>
     <Avatar />
   </div>
 </template>
 
 <script>
+// import { clone, dateToString } from "../../../../utils/utils";
+// import xdate from "xdate";
 export default {
   components: {},
   props: {},
   data() {
-    return {
-    }
+    return {}
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {
-    // console.log(this)
+    // console.log("dateToString", dateToString());
   },
   methods: {}
 }
 </script>
 <style lang="scss" scoped>
-.wrapper{}
+.wrapper {
+}
 </style>

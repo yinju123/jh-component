@@ -29,7 +29,8 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "xdate": "^0.8.2"
   },
   "directories": {
     "example": "examples",

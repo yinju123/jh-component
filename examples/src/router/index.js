@@ -69,58 +69,6 @@ export const constantRoutes = [
     path: '/401',
     component: () => import('@/views/error-page/401'),
     hidden: true
-  },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/documentation',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
-      }
-    ]
   }
 ]
 
@@ -128,12 +76,19 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
+/*
+hidden 便是不展示在侧边栏
+alwaysShow 就算只有一个子集也展示父级标签
+一定要设置meta，不然也不展示在侧边栏
+asyncRoutes2是老项目的路由，不需要看
+asyncRoutes 是整整项目的路由
+*/
+export const asyncRoutes2 = [
   {
     path: '/avatar',
     component: Layout,
     meta: {
-      title: 'Example2',
+      title: '例子',
       icon: 'el-icon-s-help'
     },
     children: [
@@ -141,7 +96,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/avatar/index'),
         meta: {
-          title: 'Example3',
+          title: 'avator',
           icon: 'el-icon-s-help'
         }
       }
@@ -402,6 +357,27 @@ export const asyncRoutes = [
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
+]
+
+export const asyncRoutes = [
+  {
+    path: '/example',
+    component: Layout,
+    meta: {
+      title: 'example',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/avatar/index'),
+        meta: {
+          title: 'avator',
+          icon: 'el-icon-s-help'
+        }
+      }
+    ]
+  }
 ]
 
 const createRouter = () => new Router({

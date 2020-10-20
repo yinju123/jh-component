@@ -4,20 +4,20 @@ const webpack = require('webpack')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-function resolve(dir){
+function resolve(dir) {
   return path.join(__dirname, dir)
 }
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  entry:{
-    index:'./src/index.js',
-    utils:'./utils/utils.js'
+  entry: {
+    health: './src/index.js',
+    // utils: './utils/utils.js'
   },
-  output:{
-    path:resolve('../lib'),
-    filename:'[name].js',
-    library:'health',
+  output: {
+    path: resolve('../lib'),
+    filename: '[name].js',
+    library: '[name]',
     libraryTarget: 'umd'
   },
   plugins:[
@@ -25,46 +25,71 @@ module.exports = {
     new VueLoaderPlugin()
     
   ],
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
-        test:/\.css$/,
-        loader:[
+        test: /\.css$/,
+        loader: [
           'style-loader',
           'css-loader'
         ]
       },
       {
-        test:/\.scss$/,
-        loader:[
+        test: /\.scss$/,
+        loader: [
           'style-loader',
           'css-loader',
           'sass-loader',
         ]
       },
       {
-        test:/\.vue$/,
+        test: /\.vue$/,
         exclude: /(node_modules | bower_components)/,
-        use:{
-          loader:'vue-loader'
+        use: {
+          loader: 'vue-loader'
         }
       },
       {
-        test:/\.js$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use:{
-          loader:'babel-loader',
-          options:{
+        use: {
+          loader: 'babel-loader',
+          options: {
             presets: ['@babel/preset-env']
           }
         }
       }
     ]
   },
-  optimization:{
+  optimization: {
     minimize: false,
+    runtimeChunk: true,
+    /* 
+      runtimeChunk 拆分
+
+    */
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
+      // chunks: 'async',
+      // minSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 5,
+      // maxInitialRequests: 3,
+      // automaticNameDelimiter: '~',
+      // name: true,
+
+      cacheGroups: {
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   priority: -10
+        // },
+        utils: {
+          test: /utils/,
+          minSize: 0,
+          // minChunks: 1,
+          // priority: -20,
+        }
+      }
     },
   },
 }
