@@ -7,9 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 function resolve(dir){
   return path.join(__dirname, dir)
 }
-
-const VueLoadPlugin = require('vue-loader/lib/plugin')
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry:{
@@ -23,8 +21,9 @@ module.exports = {
     libraryTarget: 'umd'
   },
   plugins:[
-    new VueLoadPlugin(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
+    
   ],
   module:{
     rules:[
@@ -68,8 +67,6 @@ module.exports = {
       chunks: 'all'
     },
   },
-
-
 }
 
 
