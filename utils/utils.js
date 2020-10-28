@@ -127,6 +127,69 @@ export function clone(obj) {
   throw new Error("Unable to copy obj! Its type isn't supported.");
 }
 
+/* 
+  毫秒装换成小时或者天
+  millisecond 毫秒
+  type 类型，h表示小时，d表示天 默认为h
+*/
+export function millisecondFormatter(millisecond=0, type = 'h'){
+  let seconds = Math.floor(millisecond/1000)
+  let d=h=m=s=0
+  if(type === 'h'){
+    h = Math.floor(seconds/3600)
+    m = Math.floor(seconds%3600/60)
+    s = Math.floor(seconds%60)
+  } else if(type === 'd'){
+    d = Math.floor(seconds/(3600*24))
+    h = Math.floor(seconds%(3600*24)/3600)
+    m = Math.floor(seconds%3600/60)
+    s = Math.floor(seconds%60)
+  }
+
+  return {d,h,m,s}
+}
+
+/* 
+  获取url参数
+  url url地址
+*/
+export function getUrlParams(url){
+  let paramsString = url.split('?')[1]
+  let paramsArr = paramsString.split('&');
+  let params = {}
+  paramsArr.forEach(item => {
+    let keyVal = item.split('=')
+    params[keyVal[0]] = keyVal[1]
+  })
+  return params
+}
+/* 
+  将对象装换成url参数
+  params: 要被转换的对象
+*/
+export function toUrlParams(params){
+  let keys = Object.keys(params)
+  let paramsArr = []
+  for(let key of keys){
+    paramsArr.push(`${key}=${params[key]}`)
+  }
+  return paramsArr.join('&')
+}
+
+/*
+  获取上周的星期
+  num: 获取上周几，默认为上周的的今天 
+*/
+export function lastWeekDay (num) {
+  let now = new Date()
+  let s = now.getTime()
+  let day = now.getDay()
+  !num && (num = day)
+  let dif = num - day - 7
+  var t = new xdate(s + dif * 3600 * 24 * 1000)
+  return t.toString('yyyy-MM-dd')
+}
+
 
 
 

@@ -11,7 +11,8 @@ const devConfig = {
       title:'45',
       template:'./index.html'
     })
-  ]
+  ],
+  // devtools:'cheap-module-eval-source-map'
 }
 
 

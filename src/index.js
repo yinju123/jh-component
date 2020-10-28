@@ -1,9 +1,9 @@
 import Avatar from '../packages/avatar/index'
-import Avatar2 from '../packages/avatar2/index'
+import startEndDate from '../packages/start-end-date/index'
 
 const components = [
   Avatar,
-  Avatar2
+  startEndDate
 ]
 
 const install = function (Vue, opts = {}) {
@@ -15,5 +15,6 @@ const install = function (Vue, opts = {}) {
 
 export default {
   install,
-  Avatar
+  Avatar,
+  startEndDate
 }

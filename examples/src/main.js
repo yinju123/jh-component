@@ -9,6 +9,7 @@ import './styles/element-variables.scss'
 import enLang from 'element-ui/lib/locale/lang/en'// 如果使用中文语言包请默认支持，无需额外引入，请删除该依赖
 
 import '@/styles/index.scss' // global css
+import '@/styles/global.scss' // global css
 
 import App from './App'
 import store from './store'
@@ -21,7 +22,9 @@ import './utils/error-log' // error log
 import * as filters from './filters' // global filters
 
 // import health from '../../lib/health'
-import health from 'healthy-ui'
+import health from '../../src/index'
+// import health from 'healthy-ui'
+console.log('health2', health)
 Vue.use(health)
 
 /**

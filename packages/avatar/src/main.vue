@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import getName from "../../../utils/utils";
+// import getName from "../../../utils/utils";
 export default {
   name: "Avatar",
   components: {},
@@ -19,7 +19,7 @@ export default {
   computed: {},
   methods: {},
   created() {
-    getName.getName();
+    // getName.getName();
   },
   mounted() {},
 };

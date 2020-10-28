@@ -377,6 +377,24 @@ export const asyncRoutes = [
         }
       }
     ]
+  },
+  {
+    path: '/form',
+    component: Layout,
+    meta: {
+      title: 'example',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      {
+        path: 'start-end-date',
+        component: () => import('@/views/form/start-end-date'),
+        meta: {
+          title: 'start-end-date',
+          icon: 'el-icon-s-help'
+        }
+      }
+    ]
   }
 ]
 

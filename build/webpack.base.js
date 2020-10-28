@@ -63,7 +63,7 @@ module.exports = {
   },
   optimization: {
     minimize: false,
-    runtimeChunk: true,
+    // runtimeChunk: true,
     /* 
       runtimeChunk 拆分
 
@@ -78,18 +78,18 @@ module.exports = {
       // automaticNameDelimiter: '~',
       // name: true,
 
-      cacheGroups: {
-        // vendors: {
-        //   test: /[\\/]node_modules[\\/]/,
-        //   priority: -10
-        // },
-        utils: {
-          test: /utils/,
-          minSize: 0,
-          // minChunks: 1,
-          // priority: -20,
-        }
-      }
+      // cacheGroups: {
+      //   // vendors: {
+      //   //   test: /[\\/]node_modules[\\/]/,
+      //   //   priority: -10
+      //   // },
+      //   utils: {
+      //     test: /utils/,
+      //     minSize: 0,
+      //     // minChunks: 1,
+      //     // priority: -20,
+      //   }
+      // }
     },
   },
 }
