@@ -1,0 +1,34 @@
+// flex布局
+.align_items {
+  display: flex;
+  align-items: center;
+}
+
+.align_items_wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.items_start {
+  display: flex;
+  align-items: flex-start;
+}
+.items_end {
+  display: flex;
+  align-items: flex-end;
+}
+.flex_center_between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.space_between {
+  display: flex;
+  justify-content: space-between;
+}
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

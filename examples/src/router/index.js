@@ -51,6 +51,10 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/',
+    redirect: 'normal'
+  },
+  {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -361,33 +365,56 @@ export const asyncRoutes2 = [
 
 export const asyncRoutes = [
   {
-    path: '/example',
+    path: '/normal',
     component: Layout,
+    redirect: '/normal/index',
     meta: {
-      title: 'example',
+      title: '',
       icon: 'el-icon-s-help'
     },
     children: [
       {
         path: 'index',
-        component: () => import('@/views/avatar/index'),
+        name: 'index',
+        component: () => import('@/views/index/index'),
         meta: {
-          title: 'avator',
+          title: 'index',
           icon: 'el-icon-s-help'
         }
       }
     ]
   },
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/avatar',
+  //   meta: {
+  //     title: 'example',
+  //     icon: 'el-icon-s-help'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'avatar',
+  //       name:"avatar",
+  //       component: () => import('@/views/avatar/index'),
+  //       meta: {
+  //         title: 'avator',
+  //         icon: 'el-icon-s-help'
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/form',
     component: Layout,
     meta: {
-      title: 'example',
+      title: 'form',
       icon: 'el-icon-s-help'
     },
     children: [
       {
         path: 'start-end-date',
+        name: 'start-end-date',
         component: () => import('@/views/form/start-end-date'),
         meta: {
           title: 'start-end-date',

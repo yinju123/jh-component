@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { clone } from "../../../utils/utils";
+// "webpack": "^3.6.0",
 export default {
   name: "start-end-date",
   components: {},
@@ -69,14 +71,14 @@ export default {
       },
     };
   },
-  watch: {
-    form: {
-      handler(val) {
-        this.$emit("date-change", this.form);
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   form: {
+  //     handler(val) {
+  //       this.$emit("date-change", this.form);
+  //     },
+  //     deep: true,
+  //   },
+  // },
 };
 </script>
 <style lang="scss">

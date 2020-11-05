@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "DINEngschriftStd";
+  src: url("../../../styles/DINEngschriftStd.otf");
+}
+
+// 间距
+$num16: 16px;
+$mainColor: #287cf6;
+.padding-16 {
+  padding: $num16;
+}
+
+.padding-left-16 {
+  padding-left: $num16;
+}
+
+.padding-right-16 {
+  padding-right: $num16;
+}
+
+.padding-top-16 {
+  padding-top: $num16;
+}
+
+.padding-bottom-16 {
+  padding-bottom: $num16;
+}
+
+.margin-16 {
+  margin: $num16;
+}
+
+.margin-left-16 {
+  margin-left: $num16;
+}
+
+.margin-right-16 {
+  margin-right: $num16;
+}
+
+.margin-top-16 {
+  margin-top: $num16;
+}
+
+.margin-bottom-16 {
+  margin-bottom: $num16;
+}
+
+.font-size-12 {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.font-size-16 {
+  font-size: 14px;
+  line-height: 24px;
+}
+$mainColor: #287cf6;
+$borderColor: #ddd;
+:export {
+  num16: $num16;
+  mainColor: $mainColor;
+  borderColor: $borderColor;
+}

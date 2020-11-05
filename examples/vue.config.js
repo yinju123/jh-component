@@ -47,7 +47,8 @@ module.exports = {
         '@': resolve('src'),
         'packages':resolve('../packages')
       }
-    }
+    },
+    
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -123,5 +124,8 @@ module.exports = {
           config.optimization.runtimeChunk('single')
         }
       )
+  },
+  css:{
+    sourceMap: true
   }
 }

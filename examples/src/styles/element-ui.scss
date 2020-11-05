@@ -82,15 +82,3 @@
 .el-range-separator {
   box-sizing: content-box;
 }
-
-// element-ui 的重置样式
-// 表单垂直方向的间距，整个表单的上下间距相同
-$form-margin-vertical: 20px;
-.el-form--inline {
-  padding: 0 20px;
-  padding-top: $form-margin-vertical;
-  .el-form-item {
-    margin-bottom: $form-margin-vertical;
-    margin-right: 15px;
-  }
-}

@@ -9,6 +9,7 @@
 // import { clone, dateToString } from "../../../../utils/utils";
 // import xdate from "xdate";
 export default {
+  name: 'Avatar',
   components: {},
   props: {},
   data() {

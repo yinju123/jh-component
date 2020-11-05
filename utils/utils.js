@@ -9,15 +9,16 @@ immediately 是否是立即执行的
 */
 export const debounce = function (func, awit, immediately) {
   let timer = null
-  return function (args) {
+  return function () {
+    let args = arguments
     var self = this
     if (immediately && !timer) {
-      func.call(self, args)
+      func.apply(self, args)
     }
 
     if (timer) { clearTimeout(timer) }
     timer = setTimeout(function () {
-      func.call(self, args)
+      func.apply(self, args)
     }, awit)
   }
 }
@@ -188,6 +189,11 @@ export function lastWeekDay (num) {
   let dif = num - day - 7
   var t = new xdate(s + dif * 3600 * 24 * 1000)
   return t.toString('yyyy-MM-dd')
+}
+
+export default {
+  lastWeekDay,
+  toUrlParams
 }
 
 

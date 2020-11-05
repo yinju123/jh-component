@@ -1,0 +1,13 @@
+@import "./reset.scss";
+@import "./font.scss";
+@import "./flex.scss";
+@import "./vue-element-admin.scss";
+@import "./theme.scss";
+
+body {
+  font-size: 12px;
+  line-height: 1;
+  color: #333;
+  background-color: #eaecef;
+  font-family: "DINEngschriftStd";
+}

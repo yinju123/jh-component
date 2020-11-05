@@ -1,11 +1,7 @@
 <template>
   <div class="start-end-date">
     <el-form inline>
-      <start-end-date
-        :form="form"
-        :keys="keys"
-        @date-change="dateChange"
-      />
+      <start-end-date :form="form" :keys="keys" @date-change="dateChange" />
     </el-form>
     <div class="show_val">
       startTime:{{ form.startTime }} endTime:{{ form.endTime }}
@@ -16,6 +12,7 @@
 <script>
 import { lastWeekDay, dateToString } from '../../../../utils/utils'
 export default {
+  // name: "start-end-date",
   components: {},
   props: {},
   data() {

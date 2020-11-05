@@ -12,9 +12,11 @@ const install = function (Vue, opts = {}) {
   })
 }
 
-
 export default {
   install,
   Avatar,
   startEndDate
 }
+
+import '../styles/global.scss'
+import '../styles/element-ui.scss'

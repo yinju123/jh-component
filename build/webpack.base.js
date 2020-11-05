@@ -3,6 +3,8 @@ const path = require('path')
 const webpack = require('webpack')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpakcPlugin = require('copy-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -12,7 +14,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   entry: {
     health: './src/index.js',
-    // utils: './utils/utils.js'
   },
   output: {
     path: resolve('../lib'),
@@ -22,8 +23,16 @@ module.exports = {
   },
   plugins:[
     new CleanWebpackPlugin(),
-    new VueLoaderPlugin()
-    
+    new VueLoaderPlugin(),
+    new miniCssExtractPlugin({
+      filename: 'css/[name].[chunkhash].css'
+    }),
+    new CopyWebpakcPlugin({
+      patterns: [
+        {from:'utils',to:"utils"},
+        {from:'styles', to:'styles'}
+      ]
+    })
   ],
   module: {
     rules: [
@@ -37,7 +46,7 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: [
-          'style-loader',
+          miniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ]
@@ -61,37 +70,31 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    minimize: false,
-    // runtimeChunk: true,
-    /* 
-      runtimeChunk 拆分
+  // optimization: {
+  //   minimize: false,
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     // minSize: 0,
+  //     // minChunks: 1,
+  //     // maxAsyncRequests: 5,
+  //     // maxInitialRequests: 3,
+  //     // automaticNameDelimiter: '~',
+  //     // name: true,
 
-    */
-    splitChunks: {
-      chunks: 'all',
-      // chunks: 'async',
-      // minSize: 0,
-      // minChunks: 1,
-      // maxAsyncRequests: 5,
-      // maxInitialRequests: 3,
-      // automaticNameDelimiter: '~',
-      // name: true,
-
-      // cacheGroups: {
-      //   // vendors: {
-      //   //   test: /[\\/]node_modules[\\/]/,
-      //   //   priority: -10
-      //   // },
-      //   utils: {
-      //     test: /utils/,
-      //     minSize: 0,
-      //     // minChunks: 1,
-      //     // priority: -20,
-      //   }
-      // }
-    },
-  },
+  //     // cacheGroups: {
+  //     //   // vendors: {
+  //     //   //   test: /[\\/]node_modules[\\/]/,
+  //     //   //   priority: -10
+  //     //   // },
+  //     //   utils: {
+  //     //     test: /style/,
+  //     //     minSize: 0,
+  //     //     // minChunks: 1,
+  //     //     // priority: -20,
+  //     //   }
+  //     // }
+  //   },
+  // },
 }
 
 
