@@ -1,11 +1,13 @@
 @font-face {
   font-family: "DINEngschriftStd";
-  src: url("../../../styles/DINEngschriftStd.otf");
+  src: url("./DINEngschriftStd.otf");
+  // src: url("../../../styles/DINEngschriftStd.otf");
 }
 
 // 间距
 $num16: 16px;
 $mainColor: #287cf6;
+$borderColor: #ddd;
 .padding-16 {
   padding: $num16;
 }
@@ -60,8 +62,7 @@ $mainColor: #287cf6;
   font-size: 14px;
   line-height: 24px;
 }
-$mainColor: #287cf6;
-$borderColor: #ddd;
+
 :export {
   num16: $num16;
   mainColor: $mainColor;

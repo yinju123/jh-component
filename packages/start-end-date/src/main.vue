@@ -26,7 +26,6 @@ import { clone } from "../../../utils/utils";
 // "webpack": "^3.6.0",
 export default {
   name: "start-end-date",
-  components: {},
   props: {
     // 表单对象
     form: {
@@ -46,7 +45,6 @@ export default {
       },
     },
   },
-  created() {},
   data() {
     return {
       startOptions: {
@@ -71,14 +69,23 @@ export default {
       },
     };
   },
-  // watch: {
-  //   form: {
-  //     handler(val) {
-  //       this.$emit("date-change", this.form);
-  //     },
-  //     deep: true,
-  //   },
-  // },
+  computed: {
+    dateVal() {
+      let { form, keys } = this;
+      let [key1, key2] = keys;
+      return {
+        [key1]: form[key1],
+        [key2]: form[key2],
+      };
+    },
+  },
+  created() {},
+  watch: {
+    dateVal(val) {
+      let { form } = this;
+      this.$emit("change", form);
+    },
+  },
 };
 </script>
 <style lang="scss">

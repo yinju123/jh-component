@@ -20,12 +20,15 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
-// 打包后的内容
-import health from '../../lib/health'
 // 未打包的内容
-// import health from '../../src/index'
+import health from '../../src/index'
+import '../../styles/global.scss'
+// 打包后的内容
+// import health from '../../lib/health'
+// import '../../lib/styles/global.scss'
 // 从npm包获取的内容
 // import health from 'healthy-ui'
+// import 'healthy-ui/lib/styles/global.scss'
 Vue.use(health)
 
 /**

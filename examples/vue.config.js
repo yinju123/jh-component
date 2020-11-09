@@ -48,6 +48,17 @@ module.exports = {
         'packages':resolve('../packages')
       }
     },
+    // module:{
+    //   rules:[
+    //     {
+    //       test:/\.md$/,
+    //       loader:[
+    //         'vue-loader',
+    //         'vue-markdown-loader'
+    //       ]
+    //     }
+    //   ]
+    // }
     
   },
   chainWebpack(config) {
@@ -67,6 +78,20 @@ module.exports = {
 
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
+
+    config.module.rule('md')
+          .test(/\.md/)
+          .use('vue-loader')
+          .loader('vue-loader')
+          .end()
+          .use('vue-markdown-loader')
+          .loader('vue-markdown-loader/lib/markdown-compiler')
+          .options({
+            raw: true
+          })
+
+    
+    
 
     // set svg-sprite-loader
     config.module

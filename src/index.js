@@ -1,9 +1,10 @@
-import Avatar from '../packages/avatar/index'
+
 import startEndDate from '../packages/start-end-date/index'
+import tab from '../packages/tab/index'
 
 const components = [
-  Avatar,
-  startEndDate
+  startEndDate,
+  tab
 ]
 
 const install = function (Vue, opts = {}) {
@@ -14,9 +15,8 @@ const install = function (Vue, opts = {}) {
 
 export default {
   install,
-  Avatar,
-  startEndDate
+  startEndDate,
+  tab
 }
 
 import '../styles/global.scss'
-import '../styles/element-ui.scss'

@@ -1,16 +1,120 @@
-// element-ui 的重置样式
-// 表单垂直方向的间距，整个表单的上下间距相同
-$form-margin-vertical: 20px;
-.el-form--inline {
-  padding: 0 20px;
-  padding-top: $form-margin-vertical;
-  .el-form-item {
-    margin-bottom: $form-margin-vertical;
-    margin-right: 15px;
-  }
-}
-
 .el-table th.is-leaf,
 .el-table td {
   border-bottom: 1px solid #ddd;
 }
+
+/*按钮 ------------------------------------- */
+.el-button--medium {
+  padding: 9px 16px;
+  border-radius: 2px;
+}
+
+.icon_buttton {
+  padding: 9px 8px;
+}
+
+.el-button [class*="el-icon-"] + span {
+  margin-left: 8px;
+}
+
+.el-icon--right {
+  margin-left: 8px;
+}
+
+.el-button--primary {
+  background-color: $mainColor;
+  &:hover,
+  &:focus {
+    background-color: #326ec6;
+  }
+  &.is-plain {
+    color: $mainColor;
+    background: #fff;
+    border-color: $mainColor;
+    &:hover,
+    &:focus {
+      background-color: #ecf5ff;
+      color: $mainColor;
+    }
+  }
+}
+
+.el-button--danger {
+  background-color: #e04949;
+}
+
+.el-button.is-disabled,
+.el-button.is-disabled:hover,
+.el-button.is-disabled:focus {
+  background-color: #cccccc;
+  color: #fff;
+  border-color: #cccccc;
+}
+
+.el-button--primary.is-plain.is-disabled,
+.el-button--primary.is-plain.is-disabled:hover,
+.el-button--primary.is-plain.is-disabled:focus,
+.el-button--primary.is-plain.is-disabled:active {
+  background-color: #eee;
+  border-color: #bbb;
+  color: #999;
+}
+/*按钮 ------------------------------------- */
+
+/*表单 ------------------------------------- */
+.el-form {
+  padding: 16px 16px 1px;
+}
+.el-input {
+  width: 200px;
+}
+.el-input--medium .el-input__inner {
+  height: 32px;
+  line-height: 32px;
+}
+
+.el-input__inner {
+  padding: 0 8px;
+  border-color: $borderColor;
+  &:focus {
+    border-color: $mainColor;
+  }
+}
+
+.el-input.is-disabled .el-input__inner {
+  background-color: #f5f5f5;
+}
+
+.el-form-item__label {
+  font-size: 12px;
+  color: #666;
+  padding-right: 32px;
+}
+
+.el-form-item--medium {
+  .el-form-item__label,
+  .el-input--medium {
+    line-height: 34px;
+  }
+}
+
+.el-form-item {
+  margin-bottom: 24px;
+}
+
+// 表单垂直方向的间距，整个表单的上下间距相同
+$form-margin-vertical: 16px;
+.el-form--inline {
+  .el-form-item {
+    margin-bottom: $form-margin-vertical;
+    margin-right: 0;
+    &:nth-child(n + 2) {
+      margin-left: 24px;
+    }
+  }
+  .el-button {
+    margin-left: 16px;
+  }
+}
+
+/*表单 ------------------------------------- */

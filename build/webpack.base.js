@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpakcPlugin = require('copy-webpack-plugin')
 
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -36,6 +37,18 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test:/\.(png|jpg|gif|ttf|otf)$/i,
+        use:[
+          {
+            loader:'url-loader',
+            options:{
+              limit:10*1024,
+              name:'[name].[ext]'
+            }
+          }
+        ]
+      },
       {
         test: /\.css$/,
         loader: [
