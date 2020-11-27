@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpakcPlugin = require('copy-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 function resolve(dir) {
@@ -23,7 +24,9 @@ module.exports = {
     libraryTarget: 'umd'
   },
   plugins:[
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns :[ ' ** / * ','！static-files * ' ]
+    }),
     new VueLoaderPlugin(),
     new miniCssExtractPlugin({
       filename: 'css/[name].[chunkhash].css'

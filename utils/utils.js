@@ -1,7 +1,7 @@
 
 const xdate = require('xdate')
 
-/* 
+/*
 防抖，
 func 执行的函数
 awit 等待时间
@@ -51,135 +51,64 @@ export function arrValSame (arr, target, key) {
   return same
 }
 
-
-
 /*
 最近一个月
+date 结束日期 默认为今天
 dateType 时间类型 m:月 w:周
 amount 数量 最近几月 最近几周
 */
-export function lately ({dateType = 'm', amount = 1}) {
-  let endDate = Date.now()
+export function lately ({date = new Date(), dateType = 'm', amount = 1} = {}) {
+  let endDate = date.getTime()
   let base = ''
   if (dateType === 'w') {
-    base = 3600 * 24 * 1000
+    base = 6 * 3600 * 24 * 1000
   } else if (dateType === 'm') {
-    base = 30 * 3600 * 24 * 1000
+    base = 29 * 3600 * 24 * 1000
   } else {}
   let startDate = endDate - base * amount
+  startDate = new xdate(startDate).toString('yyyy-MM-dd')
+  endDate = new xdate(endDate).toString('yyyy-MM-dd')
   return {endDate, startDate}
 }
 
-
-/* 
-获取本月月初、月末
+/*
+获取本月，本周
+dateType m:月 w周
+date 获取这个时间所处的周或者月。默认为今天
 */
-export function getRightMonth (date = new Date()) {
-  let m = date.getMonth()
-  let startDate = new xdate(date.setDate(1))
+export function getRight ({date = new Date(), dateType = 'm'} = {}) {
+  let startDate = ''
+  let endDate = ''
+  if (dateType === 'm') {
+    let m = date.getMonth()
+    startDate = new xdate(date.setDate(1))
+    let nextMonth = date.setMonth(m + 1)
+    endDate = new xdate(nextMonth - 3600 * 24 * 1000)
+  } else if (dateType === 'w') {
+    let day = date.getDay()
+    let millis = date.getTime()
+    !day && (day = 7)
+    endDate = new xdate(millis + (7 - day) * 24 * 3600 * 1000)
+    startDate = new xdate(endDate - 6 * 24 * 3600 * 1000)
+  }
   startDate = startDate.toString('yyyy-MM-dd')
-  let nextMonth = date.setMonth(m + 1)
-  let endDate = new xdate(nextMonth - 3600 * 24 * 1000)
   endDate = endDate.toString('yyyy-MM-dd')
   return {startDate, endDate}
 }
 
-
-/* 
-日期格式
-*/
-export function dateToString (date) {
-  !date && (date = new Date())
-  var t = new xdate(date)
-  return t.toString('yyyy-MM-dd')
-}
-
-/* 
-克隆对象
-*/
-export function clone(obj) {
-  // Handle the 3 simple types, and null or undefined
-  if (obj === null || "object" !== typeof obj) return obj;
-
-  // Handle Date
-  if (obj instanceof Date) {
-      var copy = new Date();
-      copy.setTime(obj.getTime());
-      return copy;
+export function getWeek (date = new Date()) {
+  let weekStartEnd = getRight({date, dateType: 'w'})
+  let weekString = []
+  let millisecond = new Date(weekStartEnd.startDate).getTime()
+  for (var a = 0; a < 7; a++) {
+    weekString.push(dateToString(millisecond + a * 24 * 3600 * 1000))
   }
-
-  // Handle Array
-  if (obj instanceof Array) {
-      var copy = [];
-      for (var i = 0, len = obj.length; i < len; ++i) {
-          copy[i] = clone(obj[i]);
-      }
-      return copy;
-  }
-
-  // Handle Object
-  if (obj instanceof Object) {
-      var copy = {};
-      for (var attr in obj) {
-          if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-      }
-      return copy;
-  }
-  throw new Error("Unable to copy obj! Its type isn't supported.");
-}
-
-/* 
-  毫秒装换成小时或者天
-  millisecond 毫秒
-  type 类型，h表示小时，d表示天 默认为h
-*/
-export function millisecondFormatter(millisecond=0, type = 'h'){
-  let seconds = Math.floor(millisecond/1000)
-  let d=h=m=s=0
-  if(type === 'h'){
-    h = Math.floor(seconds/3600)
-    m = Math.floor(seconds%3600/60)
-    s = Math.floor(seconds%60)
-  } else if(type === 'd'){
-    d = Math.floor(seconds/(3600*24))
-    h = Math.floor(seconds%(3600*24)/3600)
-    m = Math.floor(seconds%3600/60)
-    s = Math.floor(seconds%60)
-  }
-
-  return {d,h,m,s}
-}
-
-/* 
-  获取url参数
-  url url地址
-*/
-export function getUrlParams(url){
-  let paramsString = url.split('?')[1]
-  let paramsArr = paramsString.split('&');
-  let params = {}
-  paramsArr.forEach(item => {
-    let keyVal = item.split('=')
-    params[keyVal[0]] = keyVal[1]
-  })
-  return params
-}
-/* 
-  将对象装换成url参数
-  params: 要被转换的对象
-*/
-export function toUrlParams(params){
-  let keys = Object.keys(params)
-  let paramsArr = []
-  for(let key of keys){
-    paramsArr.push(`${key}=${params[key]}`)
-  }
-  return paramsArr.join('&')
+  return weekString
 }
 
 /*
   获取上周的星期
-  num: 获取上周几，默认为上周的的今天 
+  num: 获取上周几，默认为上周的的今天
 */
 export function lastWeekDay (num) {
   let now = new Date()
@@ -191,13 +120,158 @@ export function lastWeekDay (num) {
   return t.toString('yyyy-MM-dd')
 }
 
-export default {
-  lastWeekDay,
-  toUrlParams
+/*
+  毫秒装换成小时或者天
+  millisecond 毫秒
+  type 类型，h表示小时，d表示天 默认为h
+*/
+export function millisecondFormatter (millisecond = 0, type = 'h') {
+  let seconds = Math.floor(millisecond / 1000)
+  let d = h = m = s = 0
+  if (type === 'h') {
+    h = Math.floor(seconds / 3600)
+    m = Math.floor(seconds % 3600 / 60)
+    s = Math.floor(seconds % 60)
+  } else if (type === 'd') {
+    d = Math.floor(seconds / (3600 * 24))
+    h = Math.floor(seconds % (3600 * 24) / 3600)
+    m = Math.floor(seconds % 3600 / 60)
+    s = Math.floor(seconds % 60)
+  }
+
+  return {d, h, m, s}
+}
+
+/*
+日期格式
+*/
+export function dateToString (date) {
+  !date && (date = new Date())
+  var t = new xdate(date)
+  return t.toString('yyyy-MM-dd')
+}
+
+/*
+克隆对象
+*/
+export function clone (obj) {
+  // Handle the 3 simple types, and null or undefined
+  if (obj === null || typeof obj !== 'object') return obj
+
+  // Handle Date
+  if (obj instanceof Date) {
+    var copy = new Date()
+    copy.setTime(obj.getTime())
+    return copy
+  }
+
+  // Handle Array
+  if (obj instanceof Array) {
+    var copy = []
+    for (var i = 0, len = obj.length; i < len; ++i) {
+      copy[i] = clone(obj[i])
+    }
+    return copy
+  }
+
+  // Handle Object
+  if (obj instanceof Object) {
+    var copy = {}
+    for (var attr in obj) {
+      if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr])
+    }
+    return copy
+  }
+  throw new Error("Unable to copy obj! Its type isn't supported.")
+}
+
+/*
+  获取url参数
+  url url地址
+*/
+export function getUrlParams (url) {
+  let paramsString = url.split('?')[1]
+  let paramsArr = paramsString.split('&')
+  let params = {}
+  paramsArr.forEach(item => {
+    let keyVal = item.split('=')
+    params[keyVal[0]] = keyVal[1]
+  })
+  return params
+}
+/*
+  将对象装换成url参数
+  params: 要被转换的对象
+*/
+export function toUrlParams (params) {
+  let keys = Object.keys(params)
+  let paramsArr = []
+  for (let key of keys) {
+    paramsArr.push(`${key}=${params[key]}`)
+  }
+  return paramsArr.join('&')
+}
+
+/*
+  分配份数
+  total 总是
+  base 要分成几份
+  8份分成3份 为 3 3 2
+*/
+export function distribution (total, base) {
+  let int = Math.floor(total / base)
+  let arr = []
+  for (var a = 0; a < base; a++) {
+    arr.push(int)
+  }
+  for (var a = 0, l = total - int * base; a < l; a++) {
+    arr[a]++
+  }
+  return arr
+}
+export function refIsExist (name, timeout = 3000) {
+  return new Promise((resolve, reject) => {
+    var raf = ''
+    const fn = () => {
+      raf = requestAnimationFrame(() => {
+        if (this.$refs[name]) {
+          clearTimeout(timer)
+          cancelAnimationFrame(raf)
+          resolve(true)
+        } else {
+          fn()
+        }
+      })
+    }
+    fn()
+    // 取消查询
+    var timer = setTimeout(() => {
+      cancelAnimationFrame(raf)
+      reject(new Error('没找到dom'))
+    }, timeout)
+  })
 }
 
 
+export function telHide (tel) {
+  tel = String(tel)
+  return tel.replace(tel.substring(3, 7), '****')
+}
 
-
-
-
+export default {
+  debounce,
+  getEleDistance,
+  arrValSame,
+  lately,
+  getRight,
+  dateToString,
+  clone,
+  millisecondFormatter,
+  getUrlParams,
+  toUrlParams,
+  lastWeekDay,
+  getWeek,
+  distribution,
+  refIsExist,
+  telHide
+}

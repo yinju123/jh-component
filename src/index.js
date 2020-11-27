@@ -1,10 +1,12 @@
 
 import startEndDate from '../packages/start-end-date/index'
 import tab from '../packages/tab/index'
+import comment from '../packages/comment/index'
 
 const components = [
   startEndDate,
-  tab
+  tab,
+  comment
 ]
 
 const install = function (Vue, opts = {}) {
@@ -16,7 +18,8 @@ const install = function (Vue, opts = {}) {
 export default {
   install,
   startEndDate,
-  tab
+  tab,
+  comment
 }
 
 import '../styles/global.scss'

@@ -1,10 +1,12 @@
 // flex布局
-.align_items {
+.align_items,
+.items_center {
   display: flex;
   align-items: center;
 }
 
-.align_items_wrap {
+.align_items_wrap,
+.items_center_wrap {
   display: flex;
   align-items: center;
   flex-wrap: wrap;

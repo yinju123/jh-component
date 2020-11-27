@@ -144,6 +144,44 @@ export const asyncRoutes = [
         }
       }
     ]
+  },
+  {
+    path: '/dialog',
+    component: Layout,
+    meta: {
+      title: 'dialog',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      {
+        path: 'dialog-index',
+        name: 'dialog-index',
+        component: () => import('@/views/dialog/index'),
+        meta: {
+          title: 'dialog',
+          icon: 'el-icon-s-help'
+        }
+      }
+    ]
+  },
+  {
+    path: '/comment',
+    component: Layout,
+    meta: {
+      title: 'comment',
+      icon: 'el-icon-s-help'
+    },
+    children: [
+      {
+        path: 'comment-index',
+        name: 'comment-index',
+        component: () => import('@/views/comment/index'),
+        meta: {
+          title: 'comment',
+          icon: 'el-icon-s-help'
+        }
+      }
+    ]
   }
 ]
 

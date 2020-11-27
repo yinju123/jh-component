@@ -1,15 +1,19 @@
 
 const base = require('./webpack.base')
-const merge = require('merge')
-const path = require('path')
-const webpackMerge = require('webpack-merge')
+const {merge} = require('webpack-merge')
+
+
+
 
 const prodConfig = {
   mode:'production',
-  // mode:'development'
 }
 
-module.exports = webpackMerge.merge(base, prodConfig)
+if(analyzer){
+  prodConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
+module.exports = merge(base, prodConfig)
 
 
 
