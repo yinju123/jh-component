@@ -64,7 +64,7 @@ export default {
         .then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'z'
           })
         })
         .catch(() => {

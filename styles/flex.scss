@@ -1,4 +1,7 @@
 // flex布局
+.flex {
+  display: flex;
+}
 .align_items,
 .items_center {
   display: flex;
@@ -33,4 +36,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.flex-1 {
+  flex: 1;
 }

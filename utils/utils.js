@@ -96,6 +96,8 @@ export function getRight ({date = new Date(), dateType = 'm'} = {}) {
   return {startDate, endDate}
 }
 
+// 获取这一周的日期，默认是当前日期所在的周
+// ['2020-12-02','2020-12-03','2020-12-04']
 export function getWeek (date = new Date()) {
   let weekStartEnd = getRight({date, dateType: 'w'})
   let weekString = []
@@ -229,15 +231,24 @@ export function distribution (total, base) {
   }
   return arr
 }
-export function refIsExist (name, timeout = 3000) {
+
+// 查找ref， timeout 过期时间
+export function refIsExist (name, attr = 'width', timeout = 3000) {
   return new Promise((resolve, reject) => {
     var raf = ''
     const fn = () => {
       raf = requestAnimationFrame(() => {
-        if (this.$refs[name]) {
-          clearTimeout(timer)
-          cancelAnimationFrame(raf)
-          resolve(true)
+        let ref = this.$refs[name]
+        if (ref) {
+          Array.isArray(ref) && (ref = ref[0])
+          let width = ref.getBoundingClientRect()[attr]
+          if (width) {
+            clearTimeout(timer)
+            cancelAnimationFrame(raf)
+            resolve(true)
+          } else {
+            fn()
+          }
         } else {
           fn()
         }
@@ -247,15 +258,43 @@ export function refIsExist (name, timeout = 3000) {
     // 取消查询
     var timer = setTimeout(() => {
       cancelAnimationFrame(raf)
-      reject(new Error('没找到dom'))
+      reject(new Error(`没找到dom:${name}`))
     }, timeout)
   })
 }
 
-
+// 异常手机号
 export function telHide (tel) {
   tel = String(tel)
   return tel.replace(tel.substring(3, 7), '****')
+}
+
+// blob文件下载
+export function convertRes2Blob (response, filename) {
+  // 将二进制流转为blob
+  const blob = new Blob([response.data], { type: 'application/octet-stream' })
+  if (typeof window.navigator.msSaveBlob !== 'undefined') {
+    // 兼容IE，window.navigator.msSaveBlob：以本地方式保存文件
+    window.navigator.msSaveBlob(blob, decodeURI(filename))
+  } else {
+    // 创建新的URL并指向File对象或者Blob对象的地址
+    const blobURL = window.URL.createObjectURL(blob)
+    // 创建a标签，用于跳转至下载链接
+    const tempLink = document.createElement('a')
+    tempLink.style.display = 'none'
+    tempLink.href = blobURL
+    tempLink.setAttribute('download', decodeURI(filename))
+    // 兼容：某些浏览器不支持HTML5的download属性
+    if (typeof tempLink.download === 'undefined') {
+      tempLink.setAttribute('target', '_blank')
+    }
+    // 挂载a标签
+    document.body.appendChild(tempLink)
+    tempLink.click()
+    document.body.removeChild(tempLink)
+    // 释放blob URL地址
+    window.URL.revokeObjectURL(blobURL)
+  }
 }
 
 export default {
