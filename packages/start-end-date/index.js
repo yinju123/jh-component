@@ -3,4 +3,5 @@ import startEndDate from './src/main.vue';
 startEndDate.install = function(Vue) {
   Vue.component(startEndDate.name, startEndDate);
 };
+
 export default startEndDate;
